@@ -33,8 +33,8 @@ void ofApp::setup(){
     
     setLookupTable(dir.size());
     
-    fbo.allocate(width, height, GL_RGBA);
-    updateFbo();
+//    fbo.allocate(width, height, GL_RGBA);
+//    updateFbo();
     
     outputImage.allocate(width, height, OF_IMAGE_COLOR);
 }
@@ -116,7 +116,7 @@ void ofApp::updateFbo() {
 void ofApp::update(){
 //    updatePattern();
 //    setPattern();
-    updateFbo();
+//    updateFbo();
     ofPixels pixels;
     fbo.readToPixels(pixels);
     
@@ -125,9 +125,9 @@ void ofApp::update(){
     
     for(int i = 0; i < width; i++) {
         for(int j = 0; j < height; j++) {
-//            updatePattern(i, j);
-//            int patternBright = floor(pattern.getColor(i, j).getBrightness());
-            int patternBright = floor(pixels.getColor(i, j).getBrightness());
+            updatePattern(i, j);
+            int patternBright = floor(pattern.getColor(i, j).getBrightness());
+//            int patternBright = floor(pixels.getColor(i, j).getBrightness());
             ofPoint colorAvg(0,0,0);
             
             vector<float> table = lookUpTable[patternBright];
