@@ -2,6 +2,18 @@
 
 #include "ofMain.h"
 
+struct shapeColor {
+    float t;
+    int color;
+    int radius;
+};
+
+struct pattern {
+    ofFbo fbo;
+    int shift;
+    int radius;
+};
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -27,6 +39,9 @@ class ofApp : public ofBaseApp{
     void setLookupTable(int size);
     
     void updateFbo();
+    void setFbo();
+    
+    void updateOutputImage(bool forceLoop = false);
     
     int width;
     int height;
@@ -34,13 +49,17 @@ class ofApp : public ofBaseApp{
     vector< ofImage > images;
     ofImage pattern;
     vector< vector<float> > lookUpTable;
+    int indexShift;
     ofImage outputImage;
     
     int patternColor;
     
     ofFbo fbo;
+    int fboX;
+    int fboY;
     
     ofPoint breathOrigin;
     int radius;
     bool breath;
+    vector<shapeColor> shapes;
 };
